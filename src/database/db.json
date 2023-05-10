@@ -1,53 +1,11 @@
 {
   "gateways": [
     {
-      "id": 20012548,
-      "name": "XYZ",
-      "serialNumber": "12545875524",
-      "ipv4Address": "192.0.2.146",
-      "devices": []
-    },
-    {
-      "name": "Gateway 303",
-      "id": 20012549,
-      "serialNumber": "22-58496-785426",
-      "ipv4Address": "192.168.5.70",
-      "devices": [
-        {
-          "status": "online",
-          "uidNumber": 2345679818,
-          "vendor": "vendor plus 54",
-          "creationDate": "2023-05-13T22:23"
-        }
-      ]
-    },
-    {
       "name": "Gateway 30000",
-      "id": 20012550,
-      "serialNumber": "22-58496-785489",
-      "ipv4Address": "192.169.5.68",
-      "devices": [
-        {
-          "status": "online",
-          "uidNumber": 1485279639,
-          "vendor": "vendor p_",
-          "creationDate": "2023-05-03T22:30"
-        }
-      ]
-    },
-    {
-      "name": "Gateway 3089",
-      "id": 20012551,
-      "serialNumber": "22-58496-785429",
-      "ipv4Address": "192.178.5.68",
-      "devices": [
-        {
-          "status": "online",
-          "uidNumber": 1234567898,
-          "vendor": "vendor 1987",
-          "creationDate": "2023-05-31T22:29"
-        }
-      ]
+      "id": 1,
+      "serialNumber": "22-58496-785426",
+      "ipv4Address": "192.168.5.69",
+      "devices": []
     }
   ]
 }
