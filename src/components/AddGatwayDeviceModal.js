@@ -6,12 +6,15 @@ import {
     ModalHeader,
     ModalBody,
     ModalCloseButton,
-    Button
+    Button,
+    Spinner
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { AddGatewayDeviceFields } from "./AddGatwayDevice";
+import { gatewayDeviceSchema } from "../container/AddGateway/AddGatewayValidation";
 
-export function AddGatewayDeviceModal({ isOpen, onClose }) {
+function AddGatewayDeviceModal({ isOpen, onClose, handleSubmitDevice }) {
+
     return (
         <Fragment>
             <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -20,15 +23,36 @@ export function AddGatewayDeviceModal({ isOpen, onClose }) {
                     <ModalHeader>Add Device</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Formik onSubmit={() => { }}>
-                            {({ values }) => (
+                        <Formik
+                            onSubmit={handleSubmitDevice}
+                            validateOnBlur={false}
+                            validateOnChange={false}
+                            initialValues={{
+                                status: "offline",
+                                uidNumber: "",
+                                vendor: "",
+                                creationDate: ""
+                            }}
+                            validationSchema={gatewayDeviceSchema}>
+                            {({ errors, setFieldValue, isSubmitting }) => (
                                 <Form>
-                                    <AddGatewayDeviceFields fieldsName={{
-                                        vendor: `vendor`,
-                                        status: `status`,
-                                        uidNumber: `uidNumber`
-                                    }} />
-                                    <Button colorScheme="teal" marginBlock={"15px"} variant={"outline"} size={"md"}>Submit</Button>
+                                    <AddGatewayDeviceFields
+                                        errors={errors}
+                                        handleOnChange={(e) => setFieldValue(e.target.name, e.target.value)}
+                                        fieldsName={{
+                                            vendor: "vendor",
+                                            status: "status",
+                                            uidNumber: "uidNumber",
+                                            creationDate: "creationDate"
+                                        }} />
+                                    <Button
+                                        colorScheme="teal"
+                                        marginBlock={"15px"}
+                                        variant={"outline"}
+                                        size={"lg"}
+                                        isLoading={isSubmitting}
+                                        loadingText={"is Submitting"}
+                                        type="submit">Submit</Button>
                                 </Form>
                             )}
                         </Formik>
@@ -38,3 +62,4 @@ export function AddGatewayDeviceModal({ isOpen, onClose }) {
         </Fragment>
     )
 }
+export default AddGatewayDeviceModal;
