@@ -1,37 +1,15 @@
 import React, { Fragment } from "react";
-import { Formik, Field, Form, FieldArray, ErrorMessage } from 'formik';
-import { Button, Radio, RadioGroup, Input, Heading, Text, Stack, Flex } from '@chakra-ui/react'
+import { Formik, Form, FieldArray } from 'formik';
+import { Button, Input, Heading, Text, Flex } from '@chakra-ui/react'
+import { AddGatewayDeviceFields } from "../components/AddGatwayDevice";
 
-
-const AddGatewayDeviceFields = ({ fieldsName }) => {
-   return (
-      <Fragment>
-         <div className="col">
-            <Text as="label" marginInlineStart={"4px"}>UID Number:</Text>
-            <Input placeholder="UID Number" marginBlock={"6px"}
-               paddingInlineStart={"4px"} name={fieldsName.uidNumber}
-               type="number" />
-         </div>
-         <div className="col">
-            <Text as="label" marginInlineStart={"4px"}>Vendor:</Text>
-            <Input placeholder="Vendor" marginBlock={"6px"}
-               paddingInlineStart={"4px"} name={fieldsName.vendor}
-               type="text" />
-         </div>
-         <RadioGroup defaultValue='2'>
-            <Text as="label" marginInlineStart={"4px"}>Status:</Text>
-            <Stack spacing={5} direction='row'>
-               <Radio colorScheme='green' value='1'>
-                  Offline
-               </Radio>
-               <Radio colorScheme='green' value='2'>
-                  Online
-               </Radio>
-            </Stack>
-         </RadioGroup>
-      </Fragment>
-   )
+const initialValues = {
+   name: '',
+   serialNumber: '',
+   ipv4Address: '',
+   devices: []
 }
+
 const RemoveGatwayDeviceButton = ({ removeGatewayDevice }) => {
    return (
       <section className="d-flex justify-content-center">
@@ -46,17 +24,11 @@ const AddGatewayDevicesButton = ({ addGatewayDevice }) => {
       </Button>
    )
 }
-const initialValues = {
-   gatewatName: '',
-   serialNumber: '',
-   ipv4Address: '',
-   devices: []
-}
 const AddGateway = () => {
    const handleSubmit = () => { };
    return (
       <section>
-         <Heading className="text-center">Add Gateway</Heading>
+         <Heading textAlign={"center"} marginBlock={"15px"}>Add Gateway</Heading>
          <Formik onSubmit={handleSubmit} initialValues={initialValues}>
             {({ values }) => {
                console.log(values.devices)
@@ -64,7 +36,7 @@ const AddGateway = () => {
                   <Form>
                      <div className="col">
                         <Text as="label" marginInlineStart={"4px"}>Gateway Name:</Text>
-                        <Input placeholder="Gateway Name" marginBlock={"6px"} paddingInlineStart={"4px"} name="gatewayName" />
+                        <Input placeholder="Gateway Name" marginBlock={"6px"} paddingInlineStart={"4px"} name="name" />
 
                      </div>
                      <div className="col">

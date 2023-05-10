@@ -12,7 +12,6 @@ export default function RouteManager() {
                 <Route path="/" element={<LazyLoad.GatewaysList />} />
                 <Route path="gateway/:id" element={<LazyLoad.GatewayDetails />} />
                 <Route path="add-gateway" element={<LazyLoad.AddGateway />} />
-                <Route path="add-getway-device/:id" element={<LazyLoad.AddGatewayDevice />} />
                 <Route path="*" element={() => <p className="text-center">Not Found</p>} />
             </Routes >
         </React.Suspense>
