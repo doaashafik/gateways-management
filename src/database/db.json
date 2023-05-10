@@ -1,7 +1,8 @@
 {
     "gateways": [
         {
-            "name": "Gateway One",
+            "id": 20012548,
+            "name": "XYZ",
             "serialNumber": "12545875524",
             "ipv4Address": "192.0. 2.146",
             "devices": []

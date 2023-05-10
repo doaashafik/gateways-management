@@ -6,16 +6,14 @@ import {
     ModalHeader,
     ModalBody,
     ModalCloseButton,
+    Button
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { AddGatewayDeviceFields } from "./AddGatwayDevice";
 
-export function AddGatewayDeviceModal() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
+export function AddGatewayDeviceModal({ isOpen, onClose }) {
     return (
         <Fragment>
-            <Button onClick={onOpen}>Open Modal</Button>
             <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -30,7 +28,7 @@ export function AddGatewayDeviceModal() {
                                         status: `status`,
                                         uidNumber: `uidNumber`
                                     }} />
-                                    <Button>Submit</Button>
+                                    <Button colorScheme="teal" marginBlock={"15px"} variant={"outline"} size={"md"}>Submit</Button>
                                 </Form>
                             )}
                         </Formik>

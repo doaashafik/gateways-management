@@ -5,7 +5,7 @@ import { AddGatewayDeviceFields } from "../components/AddGatwayDevice";
 
 const initialValues = {
    name: '',
-   serialNumber: '',
+   id: '',
    ipv4Address: '',
    devices: []
 }
@@ -41,7 +41,7 @@ const AddGateway = () => {
                      </div>
                      <div className="col">
                         <Text as="label" marginInlineStart={"4px"}>Serial Number:</Text>
-                        <Input placeholder="Serial Number" marginBlock={"6px"} paddingInlineStart={"4px"} name="serialNumber" />
+                        <Input placeholder="Serial Number" marginBlock={"6px"} paddingInlineStart={"4px"} name="id" />
 
                      </div>
                      <div className="col">

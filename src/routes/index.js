@@ -7,7 +7,7 @@ import * as LazyLoad from "./LazyLoads";
 
 export default function RouteManager() {
     return (
-        <React.Suspense fallback={<>Loading...</>}>
+        <React.Suspense fallback={<></>}>
             <Routes>
                 <Route path="/" element={<LazyLoad.GatewaysList />} />
                 <Route path="gateway/:id" element={<LazyLoad.GatewayDetails />} />

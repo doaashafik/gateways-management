@@ -5,6 +5,15 @@ import { ChakraBaseProvider, Flex, Link, extendBaseTheme } from '@chakra-ui/reac
 const { Button, Input, Radio, RadioGroup, Modal, Heading, Text, Card, CardBody, CardHeader , CardFooter} = chakraTheme.components
 
 const theme = extendBaseTheme({
+  styles: {
+    global: {
+      body: {
+        color: 'default',
+        bg: '#f7f7f7',
+        height: '100%'
+      },
+    }
+  },
   components: {
     Button, Input, Radio, RadioGroup, Modal, Heading, Text, Card, CardBody, CardHeader, CardFooter
   },

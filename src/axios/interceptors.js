@@ -7,5 +7,10 @@ export const successHandler = (response) => {
 };
 
 export const errorHandler = (error) => {
-    return Promise.reject({ ...error });
+    const { response: { status } } = error;
+    return Promise.reject({ message: errorMessages[status] })
 };
+
+let errorMessages = {
+    404: 'No Data Found'
+}
