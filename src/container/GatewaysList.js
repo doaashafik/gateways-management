@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { Link, CardFooter, Text, CardHeader, Card, Heading, CardBody, SimpleGrid, Button } from "@chakra-ui/react";
-import { getGateWays } from "../apis/gateway";
+import { Link, CardFooter, Text, CardHeader, Card, Heading, CardBody, SimpleGrid, Button, StackDivider } from "@chakra-ui/react";
+import { getAllGateways } from "../apis/gateway";
 
 
 const GatewayList = () => {
     const [getways, setGetways] = React.useState([]);
     useEffect(() => {
-        getGateWays()
-            .then((data) => setGetways(data))
+        getAllGateways()
+            .then(({ data }) => setGetways(data))
             .catch(error => console.log(error))
     }, []);
     return (
@@ -16,9 +16,9 @@ const GatewayList = () => {
                 <Heading textAlign={"center"} marginBlock={"15px"}>Gateways Management</Heading>
             </header>
             {getways.length > 0 ?
-                <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+                <SimpleGrid spacing={8} templateColumns='repeat(auto-fill, minmax(250px, 1fr))'>
                     {getways.map((gateway) => (
-                        <Card>
+                        <Card key={gateway.serialNumber} textAlign={"center"}>
                             <CardHeader>
                                 <Heading size='md'>{gateway.name}</Heading>
                             </CardHeader>
@@ -27,7 +27,7 @@ const GatewayList = () => {
                                 <Text>IPV4 Address: {gateway.ipv4Address}</Text>
                             </CardBody>
                             <CardFooter>
-                                <Link href={`/gateway/${gateway.serialNumber}`} colorScheme='teal' size={"sm"} variant='outline'>
+                                <Link margin="auto" className="border-link" href={`/gateway/${gateway.serialNumber}`} colorScheme='teal' width={"50%"} textAlign={"center"} variant='outline'>
                                     View
                                 </Link>
                             </CardFooter>

@@ -1,7 +1,7 @@
 import { axiosInstance } from "../axios/config";
 
-export const getGateWays = async () => {
-  return await axiosInstance.get("/hrcomsite/home/products");
+export const getAllGateways = async () => {
+  return await axiosInstance.get("/gateways");
 };
 export const addGateWay = async () => {
   return await axiosInstance.post("/hrcomsite/home/products");
