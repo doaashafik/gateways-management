@@ -1,50 +1,27 @@
-import { Heading, Text, CardBody, Card, CardHeader, Button, SimpleGrid } from "@chakra-ui/react"
+import { Heading, Text, Button } from "@chakra-ui/react"
 import React, { Fragment, useEffect, useState } from "react"
 import { addGateWayDevice, deleteGateWayDevice, getGatewayDetials } from "../apis/gateway";
 import AddGatewayDeviceModal from "../components/AddGatwayDeviceModal";
 import { useParams } from 'react-router-dom';
+import DeleteGatewayDeviceAlert from "../components/DeleteGatewayDeviceAlert";
+import { ListGatewayDevices } from "../components/ListGatewayDevices";
 
-const GatewayDevicesList = ({ devices, handleRemoveDevice }) => {
-    return (
-        <Fragment>
-            <Heading as="h4" marginBlock={"15px"} size="md">Peripheral Devices</Heading>
-            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(250px, 1fr))'>
-                {devices.map((device) => (
-                    <Card key={device.uidNumber}>
-                        <CardHeader>
-                            <Heading size='md'>{device.vendor}</Heading>
-                        </CardHeader>
-                        <CardBody>
-                            <Text><strong>UID Number:</strong> {device.uidNumber}</Text>
-                            <Text><strong>Status:</strong> {device.status}</Text>
-                            <Text as="p">
-                                <strong>Creation Date: </strong>{<time dateTime={`${new Date(device.creationDate).toDateString()}`}>{new Date(device.creationDate).toDateString()}</time>}</Text>
-                            <Button
-                                colorScheme='teal'
-                                size={"sm"}
-                                variant='outline'
-                                marginBlockStart={"12px"}
-                                type="button"
-                                onClick={() => handleRemoveDevice(device.uidNumber)}>Remove Device</Button>
-                        </CardBody>
-                    </Card>
-                ))}
-            </SimpleGrid>
 
-        </Fragment>
-    )
-}
+const deviceDeletedInit = {
+    isOpen: false,
+    uidNumber: null
+};
 const GatewayDetials = () => {
     const [gateway, setGateway] = useState(null);
     const [isGatewayDeviceModalOpen, setGatewayDeviceModalOpen] = React.useState(false);
+    const [deviceDeleted, setDeviceDeleted] = React.useState(deviceDeletedInit);
     const [noData, setNoData] = React.useState(null);
     const { id } = useParams();
-
     /* Actions */
     const handleSubmitDevice = (values, { setSubmitting }) => {
         let updatedGateway = {
             ...gateway,
-            devices: [...gateway.devices, values]
+            devices: [...gateway.devices, { ...values, uidNumber: Number(values.uidNumber) }]
         };
         addGateWayDevice(id, updatedGateway).then((data) => {
             setSubmitting(false);
@@ -52,10 +29,14 @@ const GatewayDetials = () => {
             setGatewayDeviceModalOpen(false)
         });
     }
-    const handleRemoveDevice = (uidNumber) => {
-        deleteGateWayDevice(id, {
+    const handleDeleteDevice = () => {
+        let gatewayDeleteDevice = {
             ...gateway,
-            devices: gateway.devices.filter(device => device.uidNumber !== uidNumber)
+            devices: gateway.devices.filter(device => device.uidNumber !== deviceDeleted.uidNumber)
+        };
+        deleteGateWayDevice(id, gatewayDeleteDevice).then(() => {
+            setDeviceDeleted(deviceDeletedInit)
+            setGateway(gatewayDeleteDevice)
         })
     }
     /* Actions */
@@ -79,9 +60,12 @@ const GatewayDetials = () => {
                     <Text>Serial Number: {gateway.serialNumber}</Text>
                     <Text>IPV4 Address: {gateway.ipv4Address}</Text>
                     {gateway.devices?.length > 0 &&
-                        <GatewayDevicesList
+                        <ListGatewayDevices
                             devices={gateway.devices}
-                            handleRemoveDevice={handleRemoveDevice} />
+                            handleDeleteDevice={(uidNumber) => setDeviceDeleted({
+                                isOpen: true,
+                                uidNumber
+                            })} />
                     }
                     <Button
                         colorScheme='teal'
@@ -97,6 +81,11 @@ const GatewayDetials = () => {
                 isOpen={isGatewayDeviceModalOpen}
                 onClose={() => setGatewayDeviceModalOpen(false)}
                 handleSubmitDevice={handleSubmitDevice}
+            />
+            <DeleteGatewayDeviceAlert
+                isOpen={deviceDeleted.isOpen}
+                onClose={() => setDeviceDeleted(deviceDeletedInit)}
+                handleDeleteDevice={handleDeleteDevice}
             />
             {noData && <Text margin={"20px"} textAlign={"center"}>No Gateway Found!</Text>}
         </Fragment>

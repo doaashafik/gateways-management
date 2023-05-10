@@ -1,13 +1,26 @@
 import React, { Fragment } from "react";
 import { Formik, Form, FieldArray, ErrorMessage } from 'formik';
 import { Button, Input, Heading, Text, Flex, Box } from '@chakra-ui/react'
-import { AddGatewayDeviceFields } from "../../components/AddGatwayDevice";
+import { AddGatewayDeviceInputs } from "../../components/AddGatwayDeviceInputs";
 import { gatewaySchema, initialValues } from "./AddGatewayValidation";
 import { addGateWay } from "../../apis/gateway";
+import { useNavigate } from 'react-router-dom';
+
 
 const AddGateway = () => {
+  const history = useNavigate();
   const handleSubmit = (values, { setSubmitting }) => {
-    addGateWay(values).then((data) => { setSubmitting(false); window.location.href = "/" });
+    const convertUIDStringToNumber = (values) => {
+      values.devices.forEach(device => {
+        device.uidNumber = Number(device.uidNumber);
+      });
+      return values;
+    }
+    addGateWay(convertUIDStringToNumber(values))
+      .then((data) => {
+        setSubmitting(false);
+        history("/")
+      });
   };
   return (
     <section>
@@ -61,7 +74,7 @@ const AddGateway = () => {
                           <Flex justifyContent="end">
                             <RemoveGatwayDeviceButton removeGatewayDevice={() => remove(index)} />
                           </Flex>
-                          <AddGatewayDeviceFields
+                          <AddGatewayDeviceInputs
                             errors={errors.devices ? errors.devices[index] : {}}
                             handleOnChange={(e) => setFieldValue(e.target.name, e.target.value)}
                             fieldsName={{

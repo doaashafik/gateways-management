@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Radio, RadioGroup, Input, Text, Stack, Box } from '@chakra-ui/react'
 import { ErrorMessage } from "formik";
 
-export const AddGatewayDeviceFields = ({ fieldsName, handleOnChange, errors }) => {
+export const AddGatewayDeviceInputs = ({ fieldsName, handleOnChange, errors }) => {
     return (
         <Fragment>
             <div className="col">

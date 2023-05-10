@@ -10,7 +10,7 @@ import {
     Spinner
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
-import { AddGatewayDeviceFields } from "./AddGatwayDevice";
+import { AddGatewayDeviceInputs } from "./AddGatwayDeviceInputs";
 import { gatewayDeviceSchema } from "../container/AddGateway/AddGatewayValidation";
 
 function AddGatewayDeviceModal({ isOpen, onClose, handleSubmitDevice }) {
@@ -36,7 +36,7 @@ function AddGatewayDeviceModal({ isOpen, onClose, handleSubmitDevice }) {
                             validationSchema={gatewayDeviceSchema}>
                             {({ errors, setFieldValue, isSubmitting }) => (
                                 <Form>
-                                    <AddGatewayDeviceFields
+                                    <AddGatewayDeviceInputs
                                         errors={errors}
                                         handleOnChange={(e) => setFieldValue(e.target.name, e.target.value)}
                                         fieldsName={{
