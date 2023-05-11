@@ -32,6 +32,6 @@
 
 ### Steps to build the application
 * run `npm run build`
-* Builds the app for production to the `build` folder.\
+* Builds the app for production to the `build` folder.
 
 
