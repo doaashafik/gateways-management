@@ -5,7 +5,14 @@
       "id": 1,
       "serialNumber": "22-58496-785426",
       "ipv4Address": "192.168.5.69",
-      "devices": []
+      "devices": [
+        {
+          "status": "online",
+          "uidNumber": 1478523695,
+          "vendor": "vendor plus 7097",
+          "creationDate": "2023-05-24T23:15"
+        }
+      ]
     }
   ]
 }

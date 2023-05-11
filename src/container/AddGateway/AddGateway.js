@@ -33,6 +33,7 @@ const AddGateway = () => {
                 <Text as="label" marginInlineStart={"4px"}>Gateway Name:</Text>
                 <Input
                   placeholder="Gateway Name"
+                  aria-label="Gateway Name"
                   marginBlock={"6px"}
                   isInvalid={errors.name}
                   paddingInlineStart={"4px"}

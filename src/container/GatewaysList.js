@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from "react";
-import { Link, CardFooter, Text, CardHeader, Card, Heading, CardBody, SimpleGrid, Button, StackDivider } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { Link, CardFooter, Text, CardHeader, Card, Heading, CardBody, SimpleGrid } from "@chakra-ui/react";
 import { getAllGateways } from "../apis/gateway";
 
 

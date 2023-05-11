@@ -49,7 +49,7 @@ const GatewayDetials = () => {
                 setNoData(null);
             })
             .catch(error => setNoData(error.message));
-    }, []);
+    }, [id]);
     return (
         <Fragment>
             {gateway &&

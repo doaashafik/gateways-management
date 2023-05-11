@@ -6,8 +6,7 @@ import {
     ModalHeader,
     ModalBody,
     ModalCloseButton,
-    Button,
-    Spinner
+    Button
 } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { AddGatewayDeviceInputs } from "./AddGatwayDeviceInputs";
