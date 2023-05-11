@@ -25,7 +25,7 @@
 
 ### How Rest Service works
 * database `folder` contains db.json file
-* db.json has props gateways
+* db.json has props`/gateways`
 * json-server use it to build resources for `get - put - post`
 
 
