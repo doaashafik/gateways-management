@@ -23,9 +23,11 @@
 * run `npm run start` to start the project
 * run `npm run server` to run json-server
 
-### Steps to run tests
-* run `npm run test`
-* all tests found in folder __tests__
+### How Rest Service works
+* database `folder` contains db.json file
+* db.json has props gateways
+* json-server use it to build resources for `get - put - post`
+
 
 ### Steps to build the application
 * run `npm run build`
