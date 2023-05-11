@@ -20,8 +20,9 @@
 ### Steps to run the Project
 * clone the repository
 * run `npm run install` note: node version 14+
-* run `npm run start` to start the project
-* run `npm run server` to run json-server
+* run `npm run start` to start the client-side
+* run `npm run server` to run the server [it's local]
+* must run `start` && `server` scripts together 
 
 ### How Rest Service works
 * database `folder` contains db.json file

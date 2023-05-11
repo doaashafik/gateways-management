@@ -13,6 +13,20 @@
           "creationDate": "2023-05-24T23:15"
         }
       ]
+    },
+    {
+      "name": "Gateway 303",
+      "id": 2,
+      "serialNumber": "22-58496-785489",
+      "ipv4Address": "192.168.5.68",
+      "devices": [
+        {
+          "status": "online",
+          "uidNumber": 2345678901,
+          "vendor": "vendor plus 7097",
+          "creationDate": "2023-05-12T13:07"
+        }
+      ]
     }
   ]
 }
